@@ -29,11 +29,14 @@ Code, saved outputs, exercises, and figures come from the original notebooks in 
 - [[EN/Lectures/12 - Smart Search with Word Vectors/12.0 - Overview|12 - Smart Search with Word Vectors]] — Word vectors, Word2Vec, GloVe, semantic limits, and query expansion.
 - [[EN/Lectures/13 - Autocomplete/13.0 - Overview|13 - Autocomplete]] — N-gram language models, backoff, interpolation, perplexity, and generation.
 
+- [[EN/Lectures/10 - How a Machine Learns/10.0 - Overview|10 - How a Machine Learns]]
+- [[EN/Lectures/11 - Does the Model Work/11.0 - Overview|11 - Does the Model Work]]
+
 ## Numerical reading order
 
 [[EN/Lectures/0 - Jupyter and Colab/0.0 - Overview|0]] → [[EN/Lectures/1 - Python Basics for Text/1.0 - Overview|1]] → [[EN/Lectures/2 - Pandas for Text Data/2.0 - Overview|2]] → [[EN/Lectures/3 - Parsing Text and Regex/3.0 - Overview|3]] → [[EN/Lectures/4 - Tokenization/4.0 - Overview|4]] → [[EN/Lectures/5 - Stemming and Lemmatization/5.0 - Overview|5]] → [[EN/Lectures/6 - Turning Text into Features/6.0 - Overview|6]] → [[EN/Lectures/7 - Naive Bayes Classification/7.0 - Overview|7]] → [[EN/Lectures/8 - TF-IDF and Text Search/8.0 - Overview|8]] → [[EN/Lectures/9 - Logistic Regression/9.0 - Overview|9]] → [[EN/Lectures/12 - Smart Search with Word Vectors/12.0 - Overview|12]] → [[EN/Lectures/13 - Autocomplete/13.0 - Overview|13]]
 
-The thematic groups put lecture 8 under text representation and lecture 7 under classification. Follow the numerical sequence to reproduce the source order. No notebooks numbered 10 or 11 were supplied.
+The thematic groups put lecture 8 under text representation and lecture 7 under classification. Follow the numerical sequence to reproduce the source order.
 
 - [[EN/Lectures/14 - POS Tagging and Named Entity Recognition/14.0 - Overview|14 - POS Tagging and Named Entity Recognition]]
 
