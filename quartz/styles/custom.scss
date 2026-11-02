@@ -1,0 +1,406 @@
+@use "./variables.scss" as *;
+
+// Keep Quartz's components and interactions; customize their presentation here.
+:root {
+  // The Obsidian theme aliases these back to its own variables. Keep the
+  // configured Quartz palette authoritative without circular variable aliases.
+  --light: #f8f8fa;
+  --lightgray: #e2e2e8;
+  --gray: #6c6c7c;
+  --darkgray: #454550;
+  --dark: #24242b;
+  --secondary: #7057b8;
+  --tertiary: #5d449f;
+  --highlight: rgba(112, 87, 184, 0.1);
+  --workspace-surface: color-mix(in srgb, var(--light) 96%, var(--dark));
+  --workspace-border: var(--lightgray);
+  --background-primary: var(--light);
+  --text-normal: var(--darkgray);
+  --text-muted: var(--gray);
+  --text-faint: var(--gray);
+  --text-accent: var(--secondary);
+  --text-accent-hover: var(--tertiary);
+  --link-color: var(--secondary);
+  --link-color-hover: var(--tertiary);
+  --nav-item-background-hover: var(--highlight);
+  --nav-item-background-active: var(--highlight);
+}
+
+:root[saved-theme="dark"] {
+  --light: #1e1e20;
+  --lightgray: #303034;
+  --gray: #9999a5;
+  --darkgray: #ccccd3;
+  --dark: #ededf0;
+  --secondary: #b3a0df;
+  --tertiary: #c9b8f0;
+  --highlight: rgba(179, 160, 223, 0.12);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.page {
+  max-width: 1600px;
+}
+
+// Narrower navigation leaves more room for the note, even on smaller laptops.
+.page[data-frame="default"] > #quartz-body {
+  grid-template-columns: 248px minmax(0, 1fr) 248px;
+  column-gap: 0;
+
+  > .sidebar {
+    padding: 2rem 1.25rem;
+    gap: 1.5rem;
+    height: 100dvh;
+    min-width: 0;
+  }
+
+  > .sidebar.left {
+    background: var(--workspace-surface);
+    border-right: 1px solid var(--workspace-border);
+  }
+
+  > .sidebar.right {
+    border-left: 1px solid var(--workspace-border);
+  }
+
+  > .center,
+  > footer {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    padding-inline: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  > .center > .page-header {
+    margin-top: 2rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--workspace-border);
+  }
+
+  @media all and ($tablet) {
+    grid-template-columns: 224px minmax(0, 1fr);
+    padding: 0;
+
+    > .sidebar.right {
+      height: auto;
+      border-left: 0;
+      border-top: 1px solid var(--workspace-border);
+      margin: 1.5rem 1.5rem 0;
+      width: auto;
+      padding: 1.25rem 0;
+      align-items: flex-start;
+
+      > * {
+        min-width: 0;
+      }
+    }
+  }
+
+  @media all and ($mobile) {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 1rem;
+
+    > .sidebar.left {
+      height: auto;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-right: 0;
+      border-bottom: 1px solid var(--workspace-border);
+      background: var(--light);
+      align-items: center;
+    }
+
+    > .center,
+    > footer {
+      padding-inline: 0;
+    }
+
+    > .center > .page-header {
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    > .sidebar.right {
+      height: auto;
+      flex-direction: column;
+      gap: 1.25rem;
+      border-left: 0;
+      border-top: 1px solid var(--workspace-border);
+      padding: 1.25rem 0;
+
+      > * {
+        flex: auto;
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  }
+}
+
+.page-title {
+  font-size: 1.3rem;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+
+  > a {
+    color: var(--dark);
+    font: inherit;
+    margin: 0;
+  }
+}
+
+.article-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.content-meta {
+  margin: 0.5rem 0 0;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.breadcrumb-container {
+  margin-top: 0;
+  font-size: 0.8rem;
+
+  a,
+  p {
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  a:hover {
+    color: var(--secondary);
+  }
+}
+
+.page article {
+  font-size: 1rem;
+
+  p,
+  li {
+    line-height: 1.8;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.025em;
+    line-height: 1.35;
+  }
+
+  a.internal:not(.tag-link):not(:has(img)) {
+    background: transparent;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+
+  pre,
+  blockquote:not(.callout) {
+    background: var(--workspace-surface);
+    border-radius: 8px;
+  }
+}
+
+.sidebar .flex-component > div:has(.search) {
+  min-width: 0;
+}
+
+.search {
+  min-width: 0;
+  max-width: none;
+
+  > .search-button {
+    height: 2.4rem;
+    border: 1px solid var(--workspace-border);
+    border-radius: 7px;
+    background: var(--light);
+    font-size: 0.85rem;
+
+    > p {
+      color: var(--darkgray);
+    }
+
+    &:hover {
+      border-color: var(--secondary);
+    }
+  }
+
+  > .search-container > .search-space {
+    max-width: 960px;
+
+    > input:focus {
+      outline: 2px solid var(--secondary);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.explorer .desktop-explorer {
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+}
+
+.explorer .desktop-explorer h2,
+.sidebar.right h3 {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.explorer-content {
+  margin-top: 0.75rem;
+
+  ul li > a {
+    display: block;
+    padding: 0.4rem 0.65rem;
+    margin-block: 2px;
+    border-radius: 6px;
+    color: var(--darkgray);
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 1;
+
+    &:hover {
+      background: var(--highlight);
+      color: var(--dark);
+    }
+
+    &.active {
+      color: var(--secondary);
+      background: var(--highlight);
+      box-shadow: inset 2px 0 var(--secondary);
+      font-weight: 500;
+    }
+  }
+
+  .folder-container {
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+
+    &:hover {
+      background: var(--highlight);
+    }
+
+    div > a,
+    div > button span {
+      color: var(--darkgray);
+      font-family: var(--bodyFont);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.graph > .graph-outer {
+  height: 200px;
+  margin: 0.75rem 0 0;
+  border-radius: 8px;
+  background: var(--workspace-surface);
+}
+
+.backlinks > ul.overflow {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--gray);
+
+  > li > a {
+    display: block;
+    padding: 0.3rem 0;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+}
+
+ul.toc-content.overflow > li > a {
+  font-size: 0.85rem;
+  opacity: 0.75;
+
+  &.in-view {
+    color: var(--secondary);
+    opacity: 1;
+  }
+}
+
+footer {
+  font-size: 0.75rem;
+}
+
+@media all and ($mobile) {
+  .sidebar.left .page-title {
+    display: block;
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+
+  .sidebar.left > .flex-component {
+    flex: 1 0 100%;
+    order: 1;
+    min-width: 0;
+  }
+
+  .sidebar.left .spacer {
+    display: none;
+  }
+
+  .explorer .explorer-content {
+    left: -1rem;
+    padding: 4.5rem 1rem 1rem;
+  }
+
+  .search > .search-button {
+    min-height: 2.75rem;
+    padding-right: 0.4rem;
+  }
+
+  .darkmode,
+  .readermode {
+    height: 2.75rem;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 20px;
+  }
+
+  .graph > .graph-outer {
+    height: 220px;
+  }
+}
+
+// Keep code, tables and the expanded graph inside the viewport on small screens.
+.graph > .graph-outer { height: 280px; }
+.graph > .global-graph-outer > .global-graph-container {
+  width: min(96vw, 1500px);
+  height: 90dvh;
+}
+article { min-width: 0; overflow-wrap: anywhere; }
+article pre, article .table-container { max-width: 100%; overflow-x: auto; }
+@media all and ($mobile) {
+  .graph > .graph-outer { height: 240px; }
+  .graph > .global-graph-outer > .global-graph-container { width: 96vw; height: 85dvh; }
+}
